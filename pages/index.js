@@ -61,7 +61,7 @@ export default function Home() {
   };
 
   const isAbove500 = () => {
-    return parseFloat(inputValue) >= 0.001;
+    return parseFloat(inputValue) >= 500;
   };
 
   const donate = async (pId, amount) => {
@@ -71,8 +71,8 @@ export default function Home() {
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    if (!amount || amount <= 0 || parseFloat(amount) < 0.001) {
-      alert('Please input a deposit amount of at least 0.001');
+    if (!amount || amount <= 0 || parseFloat(amount) < 500) {
+      alert('Please input a deposit amount of at least 500');
       return;
     }
 
