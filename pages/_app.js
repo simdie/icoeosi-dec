@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Modal from './components/Modal';
 
-import { PolygonAmoyTestnet } from "@thirdweb-dev/chains";
+import { Polygon } from "@thirdweb-dev/chains";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
 
 	return (
 		<ThirdwebProvider
-			activeChain={PolygonAmoyTestnet}
+			activeChain={Polygon}
 			clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
 		>
 

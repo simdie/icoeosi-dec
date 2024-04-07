@@ -1,7 +1,7 @@
 // components/Carousel.js
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import styles from './Carousel.module.css'; // Import CSS module
+import styles from './carousel.module.css'; // Import CSS module
 
 import ee from '../../public/images/ee.png';
 import ee2 from '../../public/images/ee2.png';

@@ -26,7 +26,7 @@ export default function Home() {
   const [state, setState] = useState({ pId: 0 });
 
   const address = useAddress();
-  const { contract } = useContract('0x712D0D66bDcB9aE5800aD173Dd865a5944Bb8A7c');
+  const { contract } = useContract('0xdd849CB140031B57000dafB807278a5da7757D04');
 
   useEffect(() => {
     if (showSuccessModal) {
