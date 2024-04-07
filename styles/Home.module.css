@@ -5,6 +5,7 @@
   margin: 0 auto;
 }
 
+
 .gradientText0 {
   background: -webkit-linear-gradient(#bfa3da, #84309c, #c735b0);
   -webkit-background-clip: text;
@@ -126,10 +127,12 @@
   .header {
     margin-left: 0;
   }
+
   .grid {
     width: 100%;
     flex-direction: column;
   }
+
   .title {
     font-size: 3rem;
     line-height: 1.15;
@@ -140,6 +143,7 @@
 .footer {
   border-color: #222;
 }
+
 .logo img {
   filter: invert(1);
 }
