@@ -71,8 +71,8 @@ export default function Home() {
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    if (!amount || amount <= 0 || parseFloat(amount) < 500) {
-      alert('Please input a deposit amount of at least 500');
+    if (!amount || amount <= 0 || parseFloat(amount) < 100) {
+      alert('Please input a deposit amount of at least 100');
       return;
     }
 
