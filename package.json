@@ -11,12 +11,15 @@
     "deploy": "next build && next export && npx thirdweb@latest upload out"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
     "@thirdweb-dev/react": "^4",
     "@thirdweb-dev/sdk": "^4",
     "ethers": "^5",
     "next": "^13",
+    "nodemailer": "^6.9.14",
     "react": "^18.2",
     "react-dom": "^18.2",
+    "react-hot-toast": "^2.4.1",
     "thirdweb": "^5.2.0"
   },
   "devDependencies": {

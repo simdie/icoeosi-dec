@@ -8,6 +8,7 @@ import { ethers } from 'ethers';
 import Loader from './components/Loader';
 import SuccessModal from './components/SuccessModal';
 import ThankYouModal from './components/ThankYouModal';
+import ReferralCode from './components/ReferralCode';
 
 export default function Home() {
   const handleCloseThankYouModal = () => {
@@ -71,8 +72,8 @@ export default function Home() {
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    if (!amount || amount <= 0 || parseFloat(amount) < 500) {
-      alert('Please input a deposit amount of at least 500');
+    if (!amount || amount <= 0 || parseFloat(amount) < 100) {
+      alert('Please input a deposit amount of at least 100');
       return;
     }
 
@@ -140,52 +141,68 @@ export default function Home() {
               <p>Listing Price</p>
             </div>
           </div>
-          <div className="bg-black ">
-            <div className="PaymentCard flex flex-col rounded-3xl justify-center border-gray-500 h-3/6 mt-[40px] sm:mt-[100px] mx-auto sm:w-[470px] p-[40px] border-[1px] shadow-purple">
-              <div className="input-container flex items-center justify-between bg-black h-[70px] rounded-lg mb-3 border-[1px] border-gray-500">
-                <input
-                  type="number"
-                  placeholder="0.00"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  className="placeholder-white bg-transparent border-none outline-none px-4 py-2 text-white text-lg w-full"
-                  style={{ width: 'calc(100% - 100px)' }} // Adjust width as needed
-                />
-                <div>
-                  <Image
-                    src="/images/matic.png"
-                    alt="Eosi Finance"
-                    width={110}
-                    height={2}
-                    color="white"
+          <div className="bg-black  ">
+
+            <div className='bg-black flex flex-col lg:flex-row items-center sm:items-center lg:mx-40'>
+
+              {/* Add ReferralCode component beside the PaymentCard */}
+              <div className="referral-section sm:ml-8 mt-8 sm:mt-[100px]">
+                <ReferralCode />
+              </div>
+
+              <div className="PaymentCard flex flex-col rounded-3xl justify-center border-gray-500 h-3/6 mt-[40px] sm:mt-[100px] mx-auto sm:w-[470px] p-[40px] border-[1px] shadow-purple ">
+                <div className="input-container flex items-center justify-between bg-black h-[70px] rounded-lg mb-3 border-[1px] border-gray-500">
+                  <input
+                    type="number"
+                    placeholder="0.00"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    className="placeholder-white bg-transparent border-none outline-none px-4 py-2 text-white text-lg w-full"
+                    style={{ width: 'calc(100% - 100px)' }} // Adjust width as needed
+                  />
+                  <div>
+                    <Image
+                      src="/images/matic.png"
+                      alt="Eosi Finance"
+                      width={110}
+                      height={2}
+                      color="white"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center h-1/3 gap-2 mb-3">
+                  <p className="text-md">You get</p>
+                  <div className="flex items-center gap-[30px]">
+                    <div>
+                      <Image
+                        src="/images/eosiEye.svg"
+                        alt="Eosi Finance"
+                        width={35}
+                        height={25}
+                      />
+                    </div>
+                    <div className="text-4xl font-light">{inputValue ? parseFloat(inputValue) * 10 : 0} <span className='text-sm pl-2'>Token</span> </div>
+                    {/* Use calculateDisplayedAmount */}
+                  </div>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-2 h-1/3">
+                  {address && (
+                    <button className="py-[20px] border-[1px] w-[100%] rounded-xl text-xl bg-[#11b622]" onClick={handleDonate}> Buy Token </button>
+                  )}
+                  <ConnectWallet
+                    style={{ width: '100%', height: '70px' }}
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col items-center h-1/3 gap-2 mb-3">
-                <p className="text-md">You get</p>
-                <div className="flex items-center gap-[30px]">
-                  <div>
-                    <Image
-                      src="/images/eosiEye.svg"
-                      alt="Eosi Finance"
-                      width={35}
-                      height={25}
-                    />
-                  </div>
-                  <div className="text-4xl font-light">{inputValue ? parseFloat(inputValue) * 10 : 0} <span className='text-sm pl-2'>Token</span> </div>
-                  {/* Use calculateDisplayedAmount */}
-                </div>
-              </div>
-              <div className="flex flex-col items-center justify-center gap-2 h-1/3">
-                {address && (
-                  <button className="py-[20px] border-[1px] w-[100%] rounded-xl text-xl bg-[#11b622]" onClick={handleDonate}> Buy Token </button>
-                )}
-                <ConnectWallet
-                  style={{ width: '100%', height: '70px' }}
-                />
-              </div>
+              
+
             </div>
+
+
+
+
             <div className=" h-40 mt-28 sm:mt-30   mx-[24px]">
               <p className="font-semibold text-3xl text-center pb-8  sm:pb-16">We are known, EOSI Finance partnerships continue to Soar 🚀</p>
             </div>
