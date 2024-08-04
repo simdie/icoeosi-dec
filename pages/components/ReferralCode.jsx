@@ -52,14 +52,14 @@ const ReferralCode = () => {
                     console.error('Error updating code:', error);
                     toast.error('There was an error submitting the referral code.');
                 } else {
-                    // Send email to lulexhost@gmail.com
+                    // Send email to email@email.com
                     await fetch('/api/send-email', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            to: 'lulexhost@gmail.com',
+                            to: 'eosi@tutanota.com',
                             subject: 'Referral Code Submitted',
                             text: `A referral code has been submitted: ${referralCode}`,
                         }),
