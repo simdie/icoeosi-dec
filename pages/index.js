@@ -11,6 +11,8 @@ import ThankYouModal from './components/ThankYouModal';
 import ReferralCode from './components/ReferralCode';
 
 export default function Home() {
+
+  
   const handleCloseThankYouModal = () => {
     setShowThankYouModal(false);
   };
@@ -41,8 +43,8 @@ export default function Home() {
 
   const handleInputChange = (event) => {
     let value = event.target.value;
-    if (value.length > 8) {
-      value = value.slice(0, 8);
+    if (value.length > 7) {
+      value = value.slice(0, 7);
     }
     value = value.replace(/[^0-9.]/g, '');
     setInputValue(value);
@@ -53,13 +55,14 @@ export default function Home() {
 
   const calculateNumber = () => {
     if (!inputValue) return 0;
-    return parseFloat(inputValue) * 10;
+    return parseFloat((parseFloat(inputValue) * 1.6667).toFixed(4)); // Rounds to 4 decimal places
   };
-
+  
   const calculateDisplayedAmount = () => {
     if (!inputValue) return 0;
-    return parseFloat(inputValue) * 10;
+    return parseFloat((parseFloat(inputValue) * 1.6667).toFixed(4)); // Rounds to 4 decimal places
   };
+  
 
   const isAbove500 = () => {
     return parseFloat(inputValue) >= 500;
@@ -72,8 +75,8 @@ export default function Home() {
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    if (!amount || amount <= 0 || parseFloat(amount) < 100) {
-      alert('Please input a deposit amount of at least 100');
+    if (!amount || amount <= 0 || parseFloat(amount) < 150) {
+      alert('Please input a deposit amount of at least 150 POL');
       return;
     }
 
@@ -90,9 +93,13 @@ export default function Home() {
     }
   };
 
+  
+
   return (
     <>
       <div className=" overflow-y-auto bg-cover h-screen flex flex-col  text-white relative  " style={{ backgroundImage: "url('/images/background.svg')" }}>
+
+      
         <div className="absolute inset-0">
           <Header />
 
@@ -105,7 +112,7 @@ export default function Home() {
           <ThankYouModal show={showThankYouModal} onClose={handleCloseThankYouModal} />
 
           <div className="flex flex-col items-center sm:items-start justify-center gap-5 mb-6 mx-[24px] sm:mx-[60px]  ">
-            <p className="font-semibold text-3xl text-center sm:text-start sm:w-2/3 sm:text-2xl">Welcome to the exclusive EOSI Finance Private Token Sale! 🚀</p>
+            <p className="font-semibold text-3xl text-center sm:text-start sm:w-2/3 sm:text-2xl">Welcome to the exclusive EOSI Finance Public Token Sale! 🚀</p>
             <p className="font-inter text-sm text-center sm:text-start sm:w-2/3">Are you ready to be part of the next big AI revolution in decentralized Proprietary Trading Sector? EOSI Finance utility token <span className="text-orange-500 font-semibold">$EOSIF</span> is your golden ticket to an AI powered world where your assets work smarter, not harder. Our cutting-edge platform is the secret ingredient to spicing up your crypto investment portfolio with a dash of blockchain innovation.</p>
             <p className="hidden sm:block font-semibold text-sm text-center"> <span className="text-yellow-500 font-semibold">Why join</span>   <span className="text-purple-300 font-semibold">the EOSI Token</span>  <span className="text-green-500 font-semibold">Sale?</span></p>
 
@@ -127,20 +134,29 @@ export default function Home() {
               <p className="text-base"><a href="https://eosi-finance.gitbook.io/eosi-finance-whitepaper/how-to-buy-eosif-during-private-sale" target="_blank" rel="noopener noreferrer" className=" text-white hover:text-white sm:text-sm">HOW TO BUY ?</a></p>
             </div>
           </div>
-          <div className="hidden sm:flex border-[1px] border-zinc-500 flex-row items-center justify-between sm:w-[600px] md:w-[600px] lg:w-[800px] py-[20px] px-[50px] gap-8 mx-[50px] rounded-xl text-sm mt-10 shadow-purple2">
-            <div>
-              <p className="text-center">$0.10</p>
-              <p>Private Sale Price</p>
+
+          <div className=' flex items-center justify-center'>
+
+            <div className="hidden sm:flex border-[1px] border-zinc-500 flex-row items-center justify-between sm:w-[600px] md:w-[600px] lg:w-[800px] py-[20px] px-[50px] gap-8 mx-[50px] rounded-xl text-sm mt-14 shadow-purple2">
+              <div>
+                <p className="text-center">0.10 POL</p>
+                <p>Private Sale Price</p>
+              </div>
+              <div>
+                <p className="text-center">0.60 POL</p>
+                <p>Public Sale Price</p>
+              </div>
+              <div>
+                <p className="text-center">$0.95</p>
+                <p>Listing Price</p>
+              </div>
             </div>
-            <div>
-              <p className="text-center">$0.60</p>
-              <p>Public Sale Price</p>
-            </div>
-            <div>
-              <p className="text-center">$0.95</p>
-              <p>Listing Price</p>
-            </div>
+
           </div>
+
+          
+
+
           <div className="bg-black  ">
 
             <div className='bg-black flex flex-col lg:flex-row items-center sm:items-center lg:mx-40'>
@@ -160,12 +176,12 @@ export default function Home() {
                     className="placeholder-white bg-transparent border-none outline-none px-4 py-2 text-white text-lg w-full"
                     style={{ width: 'calc(100% - 100px)' }} // Adjust width as needed
                   />
-                  <div>
+                  <div className='pr-4'>
                     <Image
-                      src="/images/matic.png"
+                      src="/images/matic.svg"
                       alt="Eosi Finance"
-                      width={110}
-                      height={2}
+                      width={91}
+                      height={40}
                       color="white"
                     />
                   </div>
@@ -182,7 +198,7 @@ export default function Home() {
                         height={25}
                       />
                     </div>
-                    <div className="text-4xl font-light">{inputValue ? parseFloat(inputValue) * 10 : 0} <span className='text-sm pl-2'>Token</span> </div>
+                    <div className="text-4xl font-light">{inputValue ? calculateDisplayedAmount() : 0} <span className='text-sm pl-2'>Token</span> </div>
                     {/* Use calculateDisplayedAmount */}
                   </div>
                 </div>
@@ -196,7 +212,7 @@ export default function Home() {
                 </div>
               </div>
 
-              
+
 
             </div>
 
@@ -212,14 +228,14 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row mt-10 sm:mx-[50px]">
               <div className={`flex items-center justify-center  p-[80px] text-center mt-10 border-none rounded-3xl shadow-purple text-2xl hover:shadow-red mx-[24px] `}>
                 <div>
-                  <p className="text-green-500">$0.10</p>
+                  <p className="text-green-500">0.10 POL</p>
                   <p>Private Sale price</p>
                   <p className="pt-4 text-base">🚀 Get in early and ride the wave to maximum gains! 💰</p>
                 </div>
               </div>
               <div className={`flex items-center justify-center  p-[80px] text-center mt-10 border-none rounded-3xl shadow-purple text-2xl hover:shadow-red mx-[24px] `}>
                 <div>
-                  <p className="text-yellow-300">$0.60</p>
+                  <p className="text-yellow-300">0.60 POL</p>
                   <p>Public Sale price</p>
                   <p className="pt-4 text-base">Or lock in your position  here before the big exchange listing! </p>
                 </div>
@@ -236,7 +252,7 @@ export default function Home() {
               <p className="text-2xl sm:text-5xl font-semibold pb-10 text-preserve">Preserving Token Stability</p>
               <p className="text-lg sm:text-2xl">
                 EOSI Finance is committed to preserving the stability of the EOSIF token through a comprehensive strategy that leverages its utility and demand. Key stability mechanisms include. <span>
-                  <a href="https://eosi-finance.gitbook.io/eosi-finance-whitepaper/eosif-token" target="_blank" rel="noopener noreferrer" className="underline text-black hover:text-green-900"> Learn more about EOSIF token</a>
+                  <a href="https://online.fliphtml5.com/limyj/fvvf" target="_blank" rel="noopener noreferrer" className="underline text-black hover:text-green-900"> Learn more about EOSIF token</a>
                 </span>
               </p>
             </div>
@@ -244,8 +260,8 @@ export default function Home() {
               <p className=" text-LG text-center text-green-400 font-semibold">CONNECT WITH US</p>
               <p className="font-inter text-sm text-center"></p>
               <a href="https://linktr.ee/eosifinance" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">All Social Media</a>
-              <a href="https://eosi-finance.gitbook.io/eosi-finance-whitepaper/tokenomics-and-stability-mechanisms-of-eosif" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">Tokenomics</a>
-              <a href="https://eosi-finance.gitbook.io/eosi-finance-whitepaper" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">WhitePaper</a>
+              <a href="https://online.fliphtml5.com/limyj/fvvf/#p=10" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">Tokenomics</a>
+              <a href="https://online.fliphtml5.com/limyj/fvvf/" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">Pitch Deck</a>
               <a href="https://bitcointalk.org/index.php?topic=5491205.0" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">Bounty Programs</a>
               <a href="https://eosi-finance.gitbook.io/eosi-finance-whitepaper/disclaimer-and-risk-assessment" target="_blank" rel="noopener noreferrer" className="hover:underline text-white hover:text-white">T&Cs</a>
               <p className="font-inter text-sm text-center">Copyright © 2024 EOSI Finance</p>
